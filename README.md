@@ -1,196 +1,43 @@
 
-# Guardians of Skies: Military Aircraft Detection System
+
+# ElevateFund - Modern Investment Platform Frontend
 
 ## Introduction
 
-### Problem Statement
+**ElevateFund** is a cutting-edge, user-friendly investment platform built to connect investors with promising startup opportunities. Developed using **React** and **TypeScript**, this platform provides an intuitive experience for users to explore, analyze, and invest in high-growth startups.
 
-In this grand endeavour, you embody the role of a revered Egyptian Sentinel, entrusted with the protection of the celestial expanse above the sacred lands of Egypt. With the dawn of advanced aerial technology, the skies have become a critical frontier, demanding vigilant surveillance to identify and monitor military helicopters intruding upon Egyptian territory. Your sacred mission is to ensure that only authorized aircraft gain access while swiftly identifying potential threats to the kingdom.
-
-With the wisdom of Thoth and the precision of a falcon's gaze, you must develop a cutting-edge object detection system. This technology will empower you to identify military helicopters with unerring accuracy, becoming your loyal ally in safeguarding Egyptian airspace. Your efforts will maintain the security and sovereignty of the kingdom, honoring the legacy of the ancient gods and protecting the people beneath the vast, eternal sky.
-
-Embark on this journey, Sentinel, and let the skies sing the praises of your unwavering vigilance and unmatched skill. The fate of Egypt rests upon your shoulders.
-
-### Objective
-
-The core objective of this project is to develop an **object detection system** capable of detecting and localizing military helicopters in aerial images. Specifically, the system should be able to:
-
-1. **Detect helicopters**: Identify helicopters from the images.
-2. **Draw bounding boxes**: Locate the helicopter in the image with precise bounding boxes.
-3. **Classify helicopters**: Categorize helicopters as either **friendly** or **enemy**.
-4. **Alerting system**: Trigger an alert if enemy helicopters are detected.
-
-The dataset provided contains labeled helicopter images, categorized into friendly and enemy aircraft. This project will utilize this dataset to train and evaluate a robust model.
-
-### Bonus Objective:
-- **Use advanced architectures** (e.g., Faster R-CNN, YOLO, RetinaNet) to further improve the detection accuracy and performance of the system.
-
-### Dataset:
-The dataset for this project is hosted on Kaggle and can be accessed [here](https://www.kaggle.com/datasets/a2015003713/militaryaircraftdetectiondataset).
+The platform offers powerful features such as real-time portfolio tracking, AI-powered opportunity matching, investment performance analytics, and educational resources designed to assist investors in making well-informed decisions. ElevateFund is designed to streamline and enhance the investment process, making it easier for investors to achieve their financial goals.
 
 ---
 
 ## Table of Contents:
+
 - [Introduction](#introduction)
 - [Technology Stack](#technology-stack)
-- [Problem Statement and Objective](#problem-statement-and-objective)
-- [Project Progress](#project-progress)
-- [Setup Instructions](#setup-instructions)
-- [Usage](#usage)
-- [Data Preprocessing](#data-preprocessing)
-- [Model Training](#model-training)
-- [Evaluation](#evaluation)
-- [Contributors](#contributors)
-- [Made at](#made-at)
+- [Prerequisites](#prerequisites)
+- [Getting Started](#getting-started)
+- [Project Structure](#project-structure)
+- [Key Features Implementation](#key-features-implementation)
+- [Security Features](#security-features)
+- [UI/UX Features](#uix-features)
+- [Performance Optimization](#performance-optimization)
+- [Available Scripts](#available-scripts)
+- [Contributing](#contributing)
 - [License](#license)
+- [Acknowledgments](#acknowledgments)
 
 ---
 
 ## Technology Stack:
 
-The project leverages modern computer vision tools and frameworks to build an efficient object detection pipeline:
-
-- **Programming Language**: Python
-- **Libraries**:
-  - **PyTorch**: Deep learning framework used for training the object detection model.
-  - **OpenCV**: For image processing and manipulation.
-  - **Albumentations**: For data augmentation to enhance model robustness.
-  - **Scikit-learn**: For dataset splitting and evaluation.
-  - **Matplotlib/Seaborn**: For data visualization and plotting.
-  - **Pandas**: For handling and preprocessing the dataset.
-- **Hardware/Environment**:
-  - Google Colab (for cloud-based GPU acceleration during training).
-
----
-
-## Problem Statement and Objective
-
-### Mission: Guardians of Skies
-
-As a guardian of Egypt's airspace, your mission is to build an intelligent system that can detect and classify military helicopters with high precision. The **primary objectives** of the project are as follows:
-
-1. **Helicopter Detection**:
-   - Train a deep learning model to identify and detect military helicopters in aerial imagery.
-
-2. **Bounding Box Localization**:
-   - Draw bounding boxes around detected helicopters and classify them into two categories: **friendly** or **enemy**.
-
-3. **Alert Mechanism**:
-   - Trigger an alert if enemy helicopters are detected in a given aerial image.
-
-4. **Advanced Detection Architectures (Bonus)**:
-   - Implement state-of-the-art architectures such as **Faster R-CNN**, **YOLOv5**, or **RetinaNet** to improve detection speed and accuracy.
-
-The dataset provided has images labeled with bounding boxes and class labels, which will be utilized to train and evaluate the detection model. The training process includes:
-- **Friendly models** (e.g., AH64, CH47, SH60)
-- **Enemy models** (e.g., Mi28, Ka52, другие)
-
-### Dataset Information:
-The dataset contains:
-- **Images**: A collection of aerial images of helicopters.
-- **Annotations**: Each image is annotated with the following data:
-  - **Bounding Box Coordinates**: The precise location of the helicopter in the image.
-  - **Class**: The model of the helicopter (friendly or enemy).
-
----
-
-## Project Progress
-
-### What We've Accomplished So Far:
-
-1. **Dataset Setup**:
-   - **Downloaded the Dataset**: We have successfully downloaded the dataset from Kaggle, which contains aerial images of military helicopters. The dataset also includes annotation files in CSV format detailing the bounding box coordinates and the class of each helicopter (either friendly or enemy).
-   - **Unzipped Dataset**: The dataset was unzipped and stored in a folder for further use in model training.
-
-2. **Data Preprocessing**:
-   - **Combined Annotations**: Multiple CSV files containing helicopter annotations have been merged into a single, comprehensive DataFrame.
-   - **File Extension Correction**: We ensured that filenames in the annotations have the `.jpg` extension added to match the actual image filenames.
-   - **Missing Images Check**: We implemented a system to check for missing images in the dataset. A list of missing images was generated and saved in `missing_images.txt` for further investigation.
-   - **Class Distribution Visualization**: A class distribution graph was generated to visually inspect the number of friendly and enemy helicopter images available for training.
-
-3. **Data Augmentation Setup**:
-   - **Albumentations Library**: The project now uses **Albumentations** for data augmentation, allowing us to apply random transformations (such as flipping, rotation, scaling) to the images during training. This enhances the model's ability to generalize to unseen data.
-
-4. **Random Image and Annotation Visualization**:
-   - **Visualization of Random Samples**: We implemented a function to visualize random images from the dataset along with their bounding box annotations. This confirms that the annotations are accurate and correctly placed around the helicopters.
-
----
-
-## Setup Instructions:
-
-### Prerequisites:
-
-Ensure that you have Python 3.x installed along with the following dependencies. You can install the necessary packages using the following commands:
-
-```bash
-!pip install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu117
-!pip install pandas opencv-python matplotlib seaborn albumentations
-```
-
-### Download Dataset:
-
-1. **Kaggle API Setup**: To download the dataset from Kaggle, you need to authenticate using the Kaggle API key. Follow these steps to get your Kaggle API key and authenticate:
-
-   - Create an account on Kaggle (https://www.kaggle.com/).
-   - Download the Kaggle API key (`kaggle.json`).
-   - Upload the `kaggle.json` file to your project directory.
-
-2. **Download the Dataset**:
-
-```bash
-!mkdir ~/.kaggle
-!cp kaggle.json ~/.kaggle/
-!chmod 600 ~/.kaggle/kaggle.json
-!kaggle datasets download -d a2015003713/militaryaircraftdetectiondataset
-!unzip militaryaircraftdetectiondataset.zip -d dataset
-```
-
----
-
-## Usage:
-
-### Data Loading & Preprocessing:
-
-1. **Combining CSV Files**:
-   - The project loads all CSV files containing helicopter annotations and combines them into a single DataFrame for easier processing.
-
-2. **Missing Image Check**:
-   - The dataset is checked for missing images. Any missing images are logged and saved in `missing_images.txt` for further inspection.
-
-3. **Class Distribution**:
-   - The project generates a **bar chart** to visualize the distribution of different helicopter models in the dataset.
-
-4. **Bounding Box Visualization**:
-   - Random images from the dataset are plotted with bounding boxes around the detected helicopters to ensure annotations are correct.
-
-### Model Training:
-
-- **Data Augmentation**:
-   - The model utilizes **Albumentations** for random data augmentations like flipping, rotation, and scaling, which improve the generalization of the model.
-
-- **Model Architecture**:
-   - You can experiment with architectures such as **Faster R-CNN**, **YOLOv5**, or **RetinaNet** for the detection task.
-
-- **Training Configuration**:
-   - A configuration file (`config.yaml`) stores model hyperparameters, such as:
-     - Batch size
-     - Learning rate
-     - Number of epochs
-     - Paths to save the trained model and checkpoints
-
-### Model Evaluation:
-
-- **Precision and Recall**: Evaluate the model’s precision and recall for friendly and enemy classes.
-- **Alert Mechanism**: Implement an alert system if an enemy helicopter is detected in an image.
-- **Visualization**: Use Matplotlib to visualize model predictions, showing bounding boxes for each detection.
-
----
-
-## Data Preprocessing:
-
-1. **CSV Parsing**: The project parses CSV annotation files, extracts image filenames, and appends the `.jpg` extension to filenames where necessary.
-2. **Splitting Dataset**: The dataset is split into **training** and **validation** sets using Scikit-learn’s `train_test_split`, ensuring a balanced class distribution across both sets.
-3. **Image Loading**: Images are loaded using OpenCV and converted to the RGB color format. They are then processed for model input.
+- **Frontend Framework**: React
+- **Programming Language**: TypeScript
+- **State Management**: React Context API/Redux
+- **Styling**: Tailwind CSS and Custom UI Components
+- **Authentication**: JWT/OAuth
+- **Animation**: Framer Motion
+- **API Integration**: REST API endpoints
+- **Package Management**: npm/yarn
 
 ---
 
@@ -198,22 +45,233 @@ Ensure that you have Python 3.x installed along with the following dependencies.
 
 **Team Name**: Aura++
 
-- **Gaurav Kumar Jangid**
-- **Piyush Kumar**
+- Gaurav Kumar Jangid
+- Piyush Kumar
+- Dhruv Gupta
+
+Made at: SVBH, MNNIT
 
 ---
 
-## Made at:
-**SVBH, MNNIT**
+## Prerequisites
+
+Before running the project locally, make sure you have the following installed on your machine:
+
+- **Node.js** (v14 or higher)
+- **npm** or **yarn**
+- **Git**
 
 ---
 
-## License:
+## Getting Started
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
+### Step 1: Clone the Repository
+
+Clone the project repository to your local machine:
+
+```bash
+git clone https://github.com/gaurav337/elevatefund_front.git
+```
+
+Navigate to the project folder:
+
+```bash
+cd elevatefund_front
+```
+
+### Step 2: Install Dependencies
+
+Install the necessary project dependencies:
+
+```bash
+npm install
+# or
+yarn install
+```
+
+### Step 3: Set Up Environment Variables
+
+Copy the example configuration to create a `.env.local` file:
+
+```bash
+cp .env.example .env.local
+```
+
+Update the environment variables with your configurations (e.g., API keys, database connections) in `.env.local`.
+
+### Step 4: Run the Development Server
+
+To run the development server and see the app in your browser, execute:
+
+```bash
+npm run dev
+# or
+yarn dev
+```
+
+This will launch the app at `http://localhost:3000`.
+
+### Step 5: Build for Production
+
+To build the app for production:
+
+```bash
+npm run build
+# or
+yarn build
+```
 
 ---
 
-**Note**: Ensure that you have the necessary permissions to access and use the dataset from Kaggle. Follow the Kaggle terms and conditions for dataset usage.
+## Project Structure
+
+The project is structured as follows:
+
+```
+elevatefund_front/
+├── src/
+│   ├── assets/          # Static assets (images, icons)
+│   ├── components/      # Reusable UI components
+│   ├── pages/           # Page components (e.g., Home, Dashboard)
+│   ├── utils/           # Utility functions
+│   ├── hooks/           # Custom React hooks
+│   ├── contexts/        # React context providers for global state
+│   ├── services/        # API service functions
+│   └── styles/          # Global styles and Tailwind configuration
+├── public/              # Public assets (favicon, index.html)
+├── package.json         # Project dependencies and build scripts
+└── .env.example         # Example environment variables
+```
 
 ---
+
+## Key Features Implementation
+
+### 1. Authentication System
+
+- **JWT token management**: Handles user registration, login, and token storage.
+- **Protected Routes**: Restricts access to specific routes for authenticated users only.
+- **Multi-factor Authentication**: Adds an extra layer of security during login.
+
+### 2. Investment Platform Features
+
+- **Investment Dashboard**: Provides an overview of investments, portfolio growth, and performance analytics.
+- **Opportunity Discovery**: AI-powered system that matches investors with suitable startup opportunities.
+- **Investment Tracking**: Real-time tracking of investment updates and performance metrics.
+
+### 3. Educational Resources
+
+- **Investment Guides**: Helps users understand various investment strategies and opportunities.
+- **Market Insights**: Regular blog posts and reports on market trends and investment opportunities.
+- **Success Stories**: Showcases successful investments made through ElevateFund.
+
+---
+
+## Security Features
+
+- **HTTPS Enforcement**: Ensures secure communication between the frontend and the backend.
+- **JWT Authentication**: Protects sensitive user information and ensures secure user sessions.
+- **XSS Protection**: Prevents cross-site scripting attacks.
+- **CSRF Protection**: Secures the app from cross-site request forgery.
+- **Input Validation**: Ensures all inputs are sanitized and validated.
+
+---
+
+## UI/UX Features
+
+- **Responsive Design**: Fully responsive layout that adjusts to different screen sizes.
+- **Dark/Light Mode**: Users can toggle between dark and light themes.
+- **Animated Transitions**: Smooth animations to improve user experience.
+- **Error Handling**: Meaningful error messages for any issues encountered.
+- **Toast Notifications**: Displays important notifications (e.g., successful investment) in real-time.
+
+---
+
+## Performance Optimization
+
+- **Code Splitting**: Reduces load times by splitting JavaScript into smaller bundles.
+- **Lazy Loading**: Only loads the components necessary for the current page view.
+- **Image Optimization**: Compresses images for faster load times.
+- **Caching Strategies**: Implements browser caching and service workers for faster page loads.
+
+---
+
+## Available Scripts
+
+- **Start the development server**:
+
+  ```bash
+  npm run dev
+  # or
+  yarn dev
+  ```
+
+- **Build for production**:
+
+  ```bash
+  npm run build
+  # or
+  yarn build
+  ```
+
+- **Run tests**:
+
+  ```bash
+  npm run test
+  ```
+
+- **Run linting**:
+
+  ```bash
+  npm run lint
+  ```
+
+- **Format code**:
+
+  ```bash
+  npm run format
+  ```
+
+---
+
+## Contributing
+
+We welcome contributions from the community! To contribute:
+
+1. Fork the repository
+2. Create your feature branch:
+
+   ```bash
+   git checkout -b feature/AmazingFeature
+   ```
+
+3. Commit your changes:
+
+   ```bash
+   git commit -m 'Add some AmazingFeature'
+   ```
+
+4. Push to the branch:
+
+   ```bash
+   git push origin feature/AmazingFeature
+   ```
+
+5. Open a Pull Request to merge your changes.
+
+---
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+---
+
+## Acknowledgments
+
+- Design inspiration from modern fintech platforms.
+- Open-source community contributions.
+- Frontend development best practices.
+- Built with ❤️ by the **ElevateFund** Team.
+
+--- 
